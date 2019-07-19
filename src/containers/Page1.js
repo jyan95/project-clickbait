@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'center',
   },
   overlay: {
-    position: 'absolute',
+    position: 'relative',
     top: 0,
     bottom: 0,
     right: 0,
@@ -56,8 +56,8 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     padding: theme.spacing(3),
     [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(6),
-      paddingRight: 0,
+      padding: theme.spacing(3),
+      paddingRight: 3,
     },
   },
   mainGrid: {
@@ -76,9 +76,14 @@ const useStyles = makeStyles(theme => ({
     ...theme.typography.body2,
     padding: theme.spacing(3, 0),
   },
-  sidebarAboutBox: {
+  contentBox: {
     padding: theme.spacing(2),
     backgroundColor: theme.palette.grey[200],
+  },
+  adBox: {
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.grey[100],
+    border: 'dashed',
   },
   sidebarSection: {
     marginTop: theme.spacing(3),
@@ -105,16 +110,16 @@ const sections = [
 
 const featuredPosts = [
   {
-    title: 'Featured post',
+    title: '[ad space]',
     date: 'Nov 12',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      'ad',
   },
   {
-    title: 'Post title',
-    date: 'Nov 11',
+    title: '[ad space]',
+    date: 'Nov 12',
     description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      'ad',
   },
 ];
 
@@ -133,33 +138,24 @@ const archives = [
   'April 2019',
 ];
 
-const social = ['GitHub', 'Twitter', 'Facebook'];
-
 export default function Page1() {
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Toolbar className={classes.toolbar}>
-          <Button size="small">Subscribe</Button>
           <Typography
             component="h2"
-            variant="h5"
+            variant="h6"
             color="inherit"
             align="center"
             noWrap
             className={classes.toolbarTitle}
           >
-            Blog
+            [sitename]
           </Typography>
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
-          <Button variant="outlined" size="small">
-            Sign up
-          </Button>
         </Toolbar>
         <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
           {sections.map(section => (
@@ -177,34 +173,32 @@ export default function Page1() {
         </Toolbar>
         <main>
           {/* Main featured post */}
-          <Paper className={classes.mainFeaturedPost}>
-            {/* Increase the priority of the hero background image */}
-            {
-              <img
-                style={{ display: 'none' }}
-                src="https://source.unsplash.com/user/erondu"
-                alt="background"
-              />
-            }
-            <div className={classes.overlay} />
-            <Grid container>
-              <Grid item md={6}>
-                <div className={classes.mainFeaturedPostContent}>
-                  <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                    Title of a longer featured blog post
-                  </Typography>
-                  <Typography variant="h5" color="inherit" paragraph>
-                    Multiple lines of text that form the lede, informing new readers quickly and
-                    efficiently about what&apos;s most interesting in this post&apos;s contents.
-                  </Typography>
-                  <Link variant="subtitle1" href="#">
-                    Continue reading…
-                  </Link>
-                </div>
-              </Grid>
-            </Grid>
-          </Paper>
+            <Typography component="h1" variant="h5" color="inherit" gutterBottom align='center'>
+              [very cool clickbait title]
+            </Typography>
+            <Typography variant="subtitle1" color="inherit" paragraph align='center'>
+              [story summary?]
+            </Typography>
           {/* End main featured post */}
+          <Paper elevation={0} className={classes.adBox}>
+            <Typography variant="h6" gutterBottom>
+              [ad space]
+            </Typography>
+            <Typography>
+              Etiam porta sem malesuada magna mollis euismod. amet fermentum.
+            </Typography>
+          </Paper>
+          <br/>
+          <Paper elevation={0} className={classes.contentBox}>
+            <Typography align='left'>
+              (story content)
+              Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
+              amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+              Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
+              amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+            </Typography>
+          </Paper>
+          <br/>
           {/* Sub featured posts */}
           <Grid container spacing={4} className={classes.cardGrid}>
             {featuredPosts.map(post => (
@@ -216,14 +210,8 @@ export default function Page1() {
                         <Typography component="h2" variant="h5">
                           {post.title}
                         </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                          {post.date}
-                        </Typography>
                         <Typography variant="subtitle1" paragraph>
                           {post.description}
-                        </Typography>
-                        <Typography variant="subtitle1" color="primary">
-                          Continue reading...
                         </Typography>
                       </CardContent>
                     </div>
@@ -235,52 +223,38 @@ export default function Page1() {
                       />
                     </Hidden>
                   </Card>
+                  <br/>
+                  <Paper elevation={0} className={classes.contentBox}>
+                    <Typography align='left'>
+                      (story content)
+                      Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
+                      amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                      Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
+                      amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                    </Typography>
+                  </Paper>
                 </CardActionArea>
               </Grid>
             ))}
           </Grid>
           {/* End sub featured posts */}
+          <Paper elevation={0} className={classes.adBox}>
+            <Typography variant="h6" gutterBottom>
+              [ad space]
+            </Typography>
+            <Typography>
+              Etiam porta sem malesuada magna mollis euismod. amet fermentum.
+            </Typography>
+          </Paper>
           <Grid container spacing={5} className={classes.mainGrid}>
-            {/* Main content */}
-            <Grid item xs={12} md={8}>
-              <Typography variant="h6" gutterBottom>
-                From the Firehose
-              </Typography>
-              <Divider />
-              {CONTENT.map(content => (
-                <Typography variant='body' gutterBottom>
-                  {content.title}
-                  <br/>
-                  {content.story}
-                </Typography>
-              ))}
-            </Grid>
-            {/* End main content */}
             {/* Sidebar */}
             <Grid item xs={12} md={4}>
-              <Paper elevation={0} className={classes.sidebarAboutBox}>
-                <Typography variant="h6" gutterBottom>
-                  About
-                </Typography>
-                <Typography>
-                  Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit
-                  amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
-                </Typography>
-              </Paper>
               <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                Archives
+                more stories
               </Typography>
               {archives.map(archive => (
                 <Link display="block" variant="body1" href="#" key={archive}>
                   {archive}
-                </Link>
-              ))}
-              <Typography variant="h6" gutterBottom className={classes.sidebarSection}>
-                Social
-              </Typography>
-              {social.map(network => (
-                <Link display="block" variant="body1" href="#" key={network}>
-                  {network}
                 </Link>
               ))}
             </Grid>
@@ -292,10 +266,10 @@ export default function Page1() {
       <footer className={classes.footer}>
         <Container maxWidth="lg">
           <Typography variant="h6" align="center" gutterBottom>
-            Footer
+            [ad space]
           </Typography>
           <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-            Something here to give the footer a purpose!
+            ad
           </Typography>
         </Container>
       </footer>
