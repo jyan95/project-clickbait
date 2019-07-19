@@ -237,6 +237,7 @@ export default function Page1() {
               </Grid>
             ))}
           </Grid>
+          <br/>
           {/* End sub featured posts */}
           <Paper elevation={0} className={classes.adBox}>
             <Typography variant="h6" gutterBottom>
